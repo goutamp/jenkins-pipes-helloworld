@@ -1,8 +1,10 @@
 node {
   try {
-    stage('checkout') {
-      checkout scm
-    }
+    stage('Checkout') {
+                steps {
+                    scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+                }
+            }
     stage('prepare') {
       sh "git clean -fdx"
     }
